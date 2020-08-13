@@ -4,9 +4,6 @@ author: 'Timon van Spronsen'
 inputs:
   repo-token:
     description: 'Token for repository'
-  configuration-path:
-    description: 'The path for the label configurations'
-    default: '.github/pr-labeler.yml'
 branding:
   icon: 'tag'
   color: 'white'

@@ -2,7 +2,7 @@ import * as core from '@actions/core'
 import * as github from '@actions/github'
 import { Context } from '@actions/github/lib/context'
 import matcher from 'matcher'
-import getConfig, { Config } from './utils/config'
+import { Config } from './utils/config'
 
 const defaultConfig = {
   ':sparkles: Deploy to DEV': 'develop',
@@ -13,7 +13,6 @@ async function action(context: Context = github.context) {
   try {
     const GITHUB_TOKEN = core.getInput('repo-token', { required: true })
     const octokit = new github.GitHub(GITHUB_TOKEN)
-    const configPath = core.getInput('configuration-path')
 
     if (!context.payload.pull_request) {
       throw new Error(
@@ -21,9 +20,8 @@ async function action(context: Context = github.context) {
       )
     }
 
-    const headRef: string = context.payload.pull_request.base.ref
     const baseRef: string = context.payload.pull_request.base.ref
-    const config = await getConfig(octokit, configPath, context.repo, headRef, defaultConfig)
+    const config = defaultConfig
     const labelsToAdd = getLabelsToAdd(config, baseRef)
 
     if (labelsToAdd.length > 0) {
