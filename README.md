@@ -5,6 +5,11 @@
 A GitHub Action that automatically applies labels to your PRs based on branch name patterns like `feature/*` or `fix/*`.
 Can be used in combination with [Release Drafter](https://github.com/toolmantim/release-drafter) to automatically [categorize pull requests](https://github.com/toolmantim/release-drafter#categorize-pull-requests).
 
+# Yesod PR Labeler
+
+PRのbaseのブランチ名を見て、それに応じたラベルを付与します。
+使い方は基本的にオリジナルと同じです。
+
 ## Usage
 
 Add `.github/workflows/pr-labeler.yml` with the following:
@@ -50,9 +55,8 @@ You can use `*` as a wildcard for matching multiple branch names. See https://ww
 When no configuration is provided, the following defaults will be used:
 
 ```yml
-feature: ['feature/*', 'feat/*'],
-fix: 'fix/*',
-chore: 'chore/*'
+':sparkles: Deploy to DEV': 'develop',
+':sparkles: Deploy to PROD': 'master'
 ```
 
 ## Contributors ✨
