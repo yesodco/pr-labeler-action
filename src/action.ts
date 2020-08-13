@@ -21,9 +21,10 @@ async function action(context: Context = github.context) {
       )
     }
 
-    const ref: string = context.payload.pull_request.base.ref
-    const config = await getConfig(octokit, configPath, context.repo, ref, defaultConfig)
-    const labelsToAdd = getLabelsToAdd(config, ref)
+    const headRef: string = context.payload.pull_request.base.ref
+    const baseRef: string = context.payload.pull_request.base.ref
+    const config = await getConfig(octokit, configPath, context.repo, headRef, defaultConfig)
+    const labelsToAdd = getLabelsToAdd(config, baseRef)
 
     if (labelsToAdd.length > 0) {
       await octokit.issues.addLabels({
