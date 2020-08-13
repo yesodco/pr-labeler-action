@@ -11,9 +11,9 @@ const defaultConfig = {
 
 async function action(context: Context = github.context) {
   try {
-    const GITHUB_TOKEN = process.env.GITHUB_TOKEN!
+    const GITHUB_TOKEN = core.getInput('repo-token', { required: true })
     const octokit = new github.GitHub(GITHUB_TOKEN)
-    const configPath = core.getInput('configuration-path', { required: true })
+    const configPath = core.getInput('configuration-path')
 
     if (!context.payload.pull_request) {
       throw new Error(
