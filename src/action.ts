@@ -5,9 +5,8 @@ import matcher from 'matcher'
 import getConfig, { Config } from './utils/config'
 
 const defaultConfig = {
-  feature: ['feature/*', 'feat/*'],
-  fix: 'fix/*',
-  chore: 'chore/*'
+  ':sparkles: Deploy to DEV': 'develop',
+  ':sparkles: Deploy to PROD': 'master'
 }
 
 async function action(context: Context = github.context) {
