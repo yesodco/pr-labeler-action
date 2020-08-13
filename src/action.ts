@@ -22,7 +22,7 @@ async function action(context: Context = github.context) {
       )
     }
 
-    const ref: string = context.payload.pull_request.head.ref
+    const ref: string = context.payload.pull_request.base.ref
     const config = await getConfig(octokit, configPath, context.repo, ref, defaultConfig)
     const labelsToAdd = getLabelsToAdd(config, ref)
 
